@@ -5,6 +5,7 @@
         "cors": "2.8.4",
         "nodemon": "1.18.3",
         "body-parser": "*"
+        "mysql": ">=2.5.0"
     },
     "scripts": {
         "dev": "nodemon",
