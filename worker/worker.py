@@ -16,7 +16,7 @@ finally:
 
         
 def get_bitcoin_bytes():
-    r = requests.get("http://rng/numbers")
+    r = requests.get("http://rng/randomNumber")
     return r.content
    
 def hash_bytes(data):
