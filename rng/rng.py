@@ -11,7 +11,7 @@ fake = Faker()
 def index():
     return "RNG running on {}\n".format(hostname)
 
-@app.route('/randomeNumber')
+@app.route('/randomNumber')
 def number():
     time.sleep(1)
     rng = str(fake.random_int(min=100, max=100000))
