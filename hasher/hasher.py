@@ -1,14 +1,17 @@
-from flask import Flask, request
-import time
-app = Flask(__name__)
-import hashlib
+require 'digest'
+require 'sinatra'
+require 'socket'
 
-@app.route('/')
-def hash(data):
-    time.sleep(1)
-    hashed_rng = hashlib.sha256(data.encode()).hexdigest()
-    return hashed_rng
+set :bind, '0.0.0.0'
+set :port, 80
 
+post '/' do
+    # Simulate a bit of delay
+    sleep 0.1
+    content_type 'text/plain'
+    "#{Digest::SHA2.new().update(request.body.read)}"
+end
 
-if __name__ == '__main__':
-    app.run(debug = True, host="0.0.0.0", port=80, threaded=False)
+get '/' do
+    "HASHER running on #{Socket.gethostname}\n"
+end
