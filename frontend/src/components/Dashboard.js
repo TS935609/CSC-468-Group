@@ -93,7 +93,7 @@ const Dashboard = () => {
             
             <h1 className='is-size-3 block'>Welcome To Red Team Coin Miner</h1>
             <h1 className='is-size-5'>                         Profile:</h1>
-            <h1 className='is-size-5'>                      Your email: {email}</h1>
+            <h1 className='is-size-5'>                           Email: {email}</h1>
             <h1 className='is-size-5'>                           Coins: {thecoin}</h1>
             <h1 className='is-size-5'>Logging out? No worries, your coins will be saved till your next login.</h1>
             </div>                
