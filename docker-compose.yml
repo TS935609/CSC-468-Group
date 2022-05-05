@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  db:
+    container_name: mysqldb
+    image: "mysql:latest"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./db:/mysql/data
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=coinminer
+      - MYSQL_HOST=mysqldb
+  redis:
+    image: 'redis:latest'
+  
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MYSQL_USER=root 
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=coinminer
+      - MYSQL_HOST=mysqldb
+     
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    ports:
+      - '3000:3000'
+  
+  rng:
+    build:
+      dockerfile: Dockerfile
+      context: ./rng
+    ports:
+      - '8001:80'
+
+  hasher:
+    build: 
+      dockerfile: Dockerfile
+      context: ./hasher
+    ports:
+      - "8002:80"
+  
+  worker:
+    build: 
+      dockerfile: Dockerfile
+      context: ./worker
+    depends_on:
+      - redis
+
+    
+  
