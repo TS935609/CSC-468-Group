@@ -91,11 +91,12 @@ const Dashboard = () => {
         <div className="container block mt-5">
             <div className='is-centered'>
             
-            <h1 className='is-size-3 block'>Welcome To Red Team Coin Miner</h1>
-            <h1 className='is-size-5'>Profile: {name}</h1>
-            <h1 className='is-size-5'> Email: {email}</h1>
-            <h1 className='is-size-5'> Coins: {thecoin}</h1>
-            <h1 className='is-size-5'>Logging out? No worries, your coins will be saved till your next login.</h1>
+            <h1 className='is-size-3 block'>Welcome To Red Team!!</h1>
+            <h1 className='is-size-4'>Here is some of your information:</h1>
+            <h1 className='is-size-5'>                       Your name: {name}</h1>
+            <h1 className='is-size-5'>                      Your email: {email}</h1>
+            <h1 className='is-size-5'>                      Rams Coins: {thecoin}</h1>
+            <h1 className='is-size-5'>To stop mining Rams Coins, simply logout. Your coins will be saved the database when you login again.</h1>
             </div>                
         </div>
           )
