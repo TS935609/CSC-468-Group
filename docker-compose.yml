@@ -14,7 +14,16 @@ services:
       - MYSQL_HOST=mysqldb
   redis:
     image: 'redis:latest'
-  
+  nginx:
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - '3060:80'
   backend:
     build:
       dockerfile: Dockerfile
@@ -40,8 +49,6 @@ services:
     volumes:
       - /app/node_modules
       - ./frontend:/app
-    ports:
-      - '3000:3000'
   
   rng:
     build:
